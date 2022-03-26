@@ -1,14 +1,13 @@
-import type { NextPage } from 'next'
 import { getProductsInCollection } from '../lib/shopify'
 import ProductList from '../components/ProductList'
 
-const Home: NextPage = ({ products }) => {
-  console.log(products)
-
+export default function Home({ products }) {
   return (
-    <div className="hello">
-      <ProductList products={products} />
-    </div>
+    <>
+      <div className="text-3xl">
+        <ProductList products={products} />
+      </div>
+    </>
   )
 }
 
@@ -16,8 +15,6 @@ export async function getStaticProps() {
   const products = await getProductsInCollection()
 
   return {
-    props: { products },
+    props: { products }, // will be passed to the page component as props
   }
 }
-
-export default Home
